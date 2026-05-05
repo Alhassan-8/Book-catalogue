@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  // Base path for GitHub Pages deployment
+  base: '/Book-catalogue/',
+
   // Root is the project root (index.html lives here)
   root: '.',
 
