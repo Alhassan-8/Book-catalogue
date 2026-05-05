@@ -3,195 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Library – Discover Your Next Great Read</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Simple Books Catalogue</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body data-theme="light">
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="header">
-      <div class="header__brand">
-        <svg
-          class="header__logo"
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <rect x="4" y="4" width="7" height="24" rx="1" fill="var(--accent)" />
-          <rect
-            x="13"
-            y="4"
-            width="7"
-            height="24"
-            rx="1"
-            fill="var(--accent-muted)"
-          />
-          <rect
-            x="22"
-            y="4"
-            width="6"
-            height="24"
-            rx="1"
-            fill="var(--accent)"
-          />
-        </svg>
-        <span class="header__title">The Library</span>
+      <div class="header__content">
+        <h1 class="header__title">Books Catalogue</h1>
+        <nav class="header__nav"></nav>
       </div>
-      <nav class="header__nav">
-        <button
-          id="themeToggleBtn"
-          class="btn btn--icon"
-          aria-label="Toggle theme"
-          title="Toggle theme"
-        >
-          <svg
-            id="themeIcon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="5" />
-            <line x1="12" y1="1" x2="12" y2="3" />
-            <line x1="12" y1="21" x2="12" y2="23" />
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-            <line x1="1" y1="12" x2="3" y2="12" />
-            <line x1="21" y1="12" x2="23" y2="12" />
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-          </svg>
-        </button>
-      </nav>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <h1 class="hero__title">Discover Your Next Great Read</h1>
-      <p class="hero__subtitle">
-        Search millions of books, build your personal library, and never lose
-        track of what to read next.
-      </p>
+    <!-- Main Layout -->
+    <div class="layout">
+      <!-- Main Content -->
+      <main>
+        <!-- Hero Section -->
+        <section class="hero">
+          <h2 class="hero__title">Find Your Next Read</h2>
+          <p class="hero__subtitle">
+            Search millions of books from the Open Library
+          </p>
 
-      <!-- SEARCH BAR -->
-      <div class="search-bar">
-        <div class="search-bar__input-wrap">
-          <svg
-            class="search-bar__icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input
-            id="searchInput"
-            type="text"
-            class="search-bar__input"
-            placeholder="Search for books by title or author..."
-            autocomplete="off"
-            aria-label="Search books"
-          />
-          <button
-            id="clearBtn"
-            class="search-bar__clear btn btn--icon d-none"
-            aria-label="Clear search"
-            hidden
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
+          <!-- Search Bar -->
+          <div class="search-bar">
+            <div class="search-bar__input-wrap">
+              <input
+                type="text"
+                id="searchInput"
+                class="search-bar__input"
+                placeholder="Search by title or author…"
+                autocomplete="off"
+              />
+            </div>
+            <button id="searchBtn" class="btn btn--primary">Search</button>
+            <button id="clearBtn" class="btn btn--ghost d-none">Clear</button>
+          </div>
+
+          <!-- Author Filters -->
+          <div id="filtersBar" class="filters">
+            <span class="filters__label">Filter by author:</span>
+            <div id="authorFilters" class="filters__chips"></div>
+            <button id="clearFilterBtn" class="btn btn--sm btn--ghost d-none">
+              Clear
+            </button>
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+          <div id="statusMsg" class="status-msg d-flex">
+            <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <rect
+                x="8"
+                y="12"
+                width="12"
+                height="40"
+                rx="2"
+                fill="var(--accent)"
+              />
+              <rect
+                x="26"
+                y="12"
+                width="12"
+                height="40"
+                rx="2"
+                fill="var(--accent-muted)"
+              />
+              <rect
+                x="44"
+                y="12"
+                width="12"
+                height="40"
+                rx="2"
+                fill="var(--accent)"
+              />
             </svg>
-          </button>
+            <p>Enter a query to start searching</p>
+          </div>
+          <div id="resultsGrid" class="books-grid"></div>
+        </section>
+      </main>
+
+      <!-- Sidebar (Favorites Panel) -->
+      <aside class="favorites-panel">
+        <div class="favorites-panel__heading">
+          <span>❤ Favorites</span>
+          <span class="badge" id="favCount">0</span>
         </div>
-        <button id="searchBtn" class="btn btn--primary">Search</button>
-      </div>
-
-      <!-- FILTERS -->
-      <div class="filters" id="filtersBar" hidden>
-        <span class="filters__label">Filter by author:</span>
-        <div id="authorFilters" class="filters__chips"></div>
-        <button id="clearFilterBtn" class="btn btn--ghost btn--sm">
-          Clear filter
-        </button>
-      </div>
-    </section>
-
-    <!-- MAIN LAYOUT -->
-    <main class="layout">
-      <!-- RESULTS PANEL -->
-      <section class="results-panel" aria-label="Search results">
-        <div id="statusMsg" class="status-msg" role="status" aria-live="polite">
-          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <rect
-              x="8"
-              y="12"
-              width="12"
-              height="40"
-              rx="2"
-              fill="var(--accent)"
-            />
-            <rect
-              x="26"
-              y="12"
-              width="12"
-              height="40"
-              rx="2"
-              fill="var(--accent-muted)"
-            />
-            <rect
-              x="44"
-              y="12"
-              width="12"
-              height="40"
-              rx="2"
-              fill="var(--accent)"
-            />
-          </svg>
-          <p>Enter a query to start searching</p>
+        <div id="favEmpty" class="fav-empty">
+          <p>No favorites yet. Start by adding books!</p>
         </div>
-        <div
-          id="resultsGrid"
-          class="books-grid"
-          aria-label="Book results"
-        ></div>
-      </section>
-
-      <!-- FAVORITES SIDEBAR -->
-      <aside class="favorites-panel" aria-label="favorites">
-        <h2 class="favorites-panel__heading">
-          <svg viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true">
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-            />
-          </svg>
-          Favorites
-          <span id="favCount" class="badge">0</span>
-        </h2>
         <ul id="favList" class="fav-list"></ul>
-        <p id="favEmpty" class="fav-empty">
-          No favorites yet. Add books using the ♥ button.
-        </p>
       </aside>
-    </main>
-
-    <footer class="footer">
-      Powered by
-      <a href="https://openlibrary.org" target="_blank" rel="noopener"
-        >Open Library</a
-      >
-    </footer>
+    </div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
