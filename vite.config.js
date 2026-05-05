@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  // Base path for GitHub Pages deployment
-  base: "/Book-catalogue/",
+  // Base path - use / for Netlify (root deployment), /Book-catalogue/ for GitHub Pages
+  base: "/",
 
   // Root is the project root (index.html lives here)
   root: ".",
