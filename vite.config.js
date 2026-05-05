@@ -1,26 +1,25 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
   // Base path for GitHub Pages deployment
-  base: '/Book-catalogue/',
+  base: "/Book-catalogue/",
 
   // Root is the project root (index.html lives here)
-  root: '.',
+  root: ".",
 
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     // Produce a single JS bundle and a single CSS file
     rollupOptions: {
-      input: 'index.html',
       output: {
         // Force a single JS entry chunk
-        entryFileNames: 'assets/app.js',
+        entryFileNames: "assets/app.js",
         // Inline all CSS into the single CSS file
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
-            return 'assets/style.css';
+          if (assetInfo.name && assetInfo.name.endsWith(".css")) {
+            return "assets/style.css";
           }
-          return 'assets/[name][extname]';
+          return "assets/[name][extname]";
         },
         // Prevent code-splitting (keep everything in one JS file)
         manualChunks: undefined,
